@@ -19,7 +19,7 @@ var getSchema = function () {
 }
 
 var canEditField = function (field) {
-  // show field only if user is admin or it's marked as editable 
+  // show field only if user is admin or it's marked as editable
   return isAdmin(Meteor.user()) || !!field.atts.editable || (!!field.afFieldInputAtts && !!field.afFieldInputAtts.editable)
 }
 
@@ -36,14 +36,14 @@ Template[getTemplate('quickForm_telescope')].helpers({
       return true // return remaining fields
     }), 'name');
     return fields;
-  },  
+  },
   afFieldsets: function () {
     var groups = _.compact(_.uniq(_.pluckDeep(getSchema(), 'autoform.group')));
-    
+
     // if user is not admin, exclude "admin" group from fieldsets
     if (!isAdmin(Meteor.user()))
       groups = _.without(groups, 'admin')
-    
+
     return groups;
   },
   fieldsetName: function () {
@@ -164,7 +164,7 @@ Template["afObjectField_telescope"].helpers({
   },
   showField: function () {
     return canEditField(this);
-  },
+  }
 });
 
 Template["afArrayField_telescope"].helpers({
@@ -182,5 +182,5 @@ Template["afArrayField_telescope"].helpers({
   },
   showField: function () {
     return canEditField(this);
-  },
+  }
 });
